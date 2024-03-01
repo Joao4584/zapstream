@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {}
+
+.white-body {
+   background-color: rgb(248, 248, 248);
+}
+
+.dark-body {
+   @apply bg-dark-1
+}
+
+.card-gray {
+   background-image: radial-gradient(circle 732px at -23.9% -25.1%, rgba(97, 82, 109, 0.062) 6.1%, rgba(179, 163, 170, 0.062) 100.2%) !important;
+   backdrop-filter: blur(10px) !important;
+   /* Altere o valor do desfoque conforme desejado */
+   @apply rounded-2xl border border-gray-1
+}
