@@ -1,19 +1,28 @@
 'use client';
+
+// * Modules * //
 import React, { useState, useEffect } from 'react';
+
+
+// * Exports * //
 import { ConnectionTreatmentPoints } from './ConnectionTreatmentPoints';
 import UserProfile from './profile';
 import { DivEffect } from '@/src/lib/motion/Effects';
+import Divider from '../ui/divider';
+import MenuList from './menuList';
 
+
+// * Components * //
 export default function SideBar(): JSX.Element {
     return (
-        <nav className="w-55 card-gray relative text-slate-700 dark:text-slate-50  ">
+        <nav className="w-55 h-full card-gray relative text-slate-700 dark:text-slate-50" >
             <DivEffect>
-                <>
+                <React.Fragment>
                     <ConnectionTreatmentPoints />
                     <UserProfile className='mt-4' />
-                    <hr className='dark:border-gray-1 w-5/6 relative left-1/2 -translate-x-1/2 mt-3' />
-                    dwa
-                </>
+                    <Divider />
+                    <MenuList />
+                </ React.Fragment>
             </DivEffect>
         </nav>
     )

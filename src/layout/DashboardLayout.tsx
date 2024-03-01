@@ -6,7 +6,7 @@ import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
 
 // * Exports * //
 import useColorMode from "../hooks/useColorMode";
-import { MainPattern } from "../components/GridPattern";
+import { MainPattern } from "../components/ui/GridPattern";
 import SideBar from "../components/sideBar";
 
 
