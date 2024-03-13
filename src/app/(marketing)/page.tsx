@@ -1,15 +1,27 @@
+import { client } from "@/sanity/lib/client";
+import imageUrlBuilder from '@sanity/image-url';
+import HeroSection from "./components/Hero";
+import React from "react";
+import CategoryHability from "./components/CategoryHability";
 
-export default function Home() {
+const builder = imageUrlBuilder(client);
+
+export default async function Home() {
+  const headers = await client.fetch(`*[_type == "header"]`);
+  const header = headers[0];
+
+  const hero = await client.fetch(`*[_type == "hero"]`);
+  const heroMain = hero[0];
+
+  // const imageId = logo.asset._ref;
+
+  // // Use o construtor de URLs de imagem para gerar o URL da imagem
+  // const logoUrl = builder.image(imageId).url();
+
   return (
-    <>
-
-      <section className="bg-ct-blue-600 min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto bg-ct-dark-100 rounded-md h-[20rem] flex justify-center items-center">
-          <p className="text-3xl font-semibold">
-            Idwdwamplement JWT Authentication in Next.js 13 App Directory
-          </p>
-        </div>
-      </section>
-    </>
+    <React.Fragment>
+      <HeroSection hero={heroMain} header={header} />
+      <CategoryHability />
+    </React.Fragment>
   );
 }

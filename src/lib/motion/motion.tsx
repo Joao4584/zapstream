@@ -1,3 +1,4 @@
+'use client';
 import { Variant, Variants } from 'framer-motion';
 
 export const navVariants = {
@@ -50,7 +51,7 @@ export const staggerContainer = (staggerChildren: any, delayChildren: any): Vari
   },
 });
 
-export const textVariant = (delay: any) => ({
+export const textVariant = (delay: number) => ({
   hidden: {
     y: 50,
     opacity: 0,
