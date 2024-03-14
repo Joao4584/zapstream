@@ -3,6 +3,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import HeroSection from "./components/Hero";
 import React from "react";
 import CategoryHability from "./components/CategoryHability";
+import CardsHability from "./components/CardsHability";
 
 const builder = imageUrlBuilder(client);
 
@@ -21,6 +22,7 @@ export default async function Home() {
   return (
     <React.Fragment>
       <HeroSection hero={heroMain} header={header} />
+      <CardsHability />
       <CategoryHability />
     </React.Fragment>
   );
