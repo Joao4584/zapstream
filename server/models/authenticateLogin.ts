@@ -26,14 +26,9 @@ class AuthenticateLogin {
 
 	public async verifyAuth() {
 		const user = await prisma.users.findFirst({
-			where: {
+			where: { 
 				OR: [
-					{
-						user: this.user,
-					},
-					{
-						email: this.user,
-					},
+					{ user: this.user }, { email: this.user },
 				]
 			},
 		});
@@ -41,10 +36,7 @@ class AuthenticateLogin {
 		if (!user || !(await compare(this.password, user.password))) {
 			throw new Error("Invalid email or password");
 		}
-
-		if (user) {
-			await this.updateIpAddress(user.id, this.ip_access);
-		}
+		if (user) { await this.updateIpAddress(user.id, this.ip_access); }
 
 		return user;
 	}
@@ -63,14 +55,9 @@ class AuthenticateLogin {
 
 			const hashedPassword = await hash(this.password, 12);
 			const newUser = await prisma.users.create({
-				data: {
-					user: this.user, name: this.name, password: hashedPassword, email: this.email
-				}
+				data: { user: this.user, name: this.name, password: hashedPassword, email: this.email }
 			});
-
-			if(newUser){
-				await this.updateIpAddress(newUser.id, this.ip_access);
-			}
+			if(newUser){ await this.updateIpAddress(newUser.id, this.ip_access); }
 
 			return newUser;
 		}
@@ -78,12 +65,8 @@ class AuthenticateLogin {
 
 	private async updateIpAddress(userId: number, ip_access: string | null): Promise<void> {
 		await prisma.users.update({
-			where: {
-				id: userId,
-			},
-			data: {
-				ip_acess: ip_access,
-			},
+			where: { id: userId }, 
+			data: { ip_acess: ip_access },
 		});
 	}
 }

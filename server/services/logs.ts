@@ -7,7 +7,7 @@ class Logs {
 		reference: string,
 		content: string,
 		user_id: number, 
-		link_id: number | null
+		link_id?: number | null
 	){
 		const log = await prisma.logs.create({
 			data: { title: title, content: content, reference: reference, user_id: user_id, link_id: link_id}

@@ -1,12 +1,11 @@
 import { z } from "zod";
 
 export const LoginUserSchema = z.object({
-    email: z
-      .string({
-        required_error: "Email is required",
-      })
-      .min(1, "Email is required")
-      .email("Email is invalid"),
+    user: z
+    .string({
+      required_error: "User is required",
+    })
+    .min(7, "Full user is required"),
     password: z
       .string({
         required_error: "Password is required",

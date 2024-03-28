@@ -6,8 +6,9 @@ import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
 
 // * Exports * //
 import useColorMode from "../hooks/useColorMode";
-import { MainPattern } from "../components/ui/GridPattern";
-import SideBar from "../components/sideBar";
+import { MainPattern } from "./ui/GridPattern";
+import SideBar from "./sideBar";
+import { AuthProvider } from "@/src/context/AuthContext";
 
 
 
@@ -28,7 +29,7 @@ export default function DashboardLayout({ children }: ChildrenProps) {
     }, [theme]);
 
     return (
-        <>
+        <AuthProvider>
             <main className="relative w-screen h-screen z-10 relative p-2">
                 <MainPattern />
                 <div className="flex w-full h-full">
@@ -36,6 +37,6 @@ export default function DashboardLayout({ children }: ChildrenProps) {
                     {children}
                 </div>
             </main>
-        </>
+        </AuthProvider>
     )
 }
