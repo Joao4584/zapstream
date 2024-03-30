@@ -4,10 +4,9 @@ import AuthJWT, { TokenPayloadJWT } from "../services/jwt";
 export default function checkVerifyJwt(req: NextRequest): TokenPayloadJWT | any {
     const { headers } = req;
     const authToken = headers.get('Authorization')?.replace('Bearer ', '');
-
-    if(authToken){
+    if(authToken && authToken != 'Bearer' && authToken != undefined){
         const payload = AuthJWT.verify(authToken);
-        if(!payload){
+        if(payload == false){
             return NextResponse.json({ code: "token_invalid", message: "Token invalid." }, { status: 401 });
         }
         return payload;

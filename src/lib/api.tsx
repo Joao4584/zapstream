@@ -1,3 +1,4 @@
+'use client';
 // * Modules * //
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 
@@ -10,7 +11,12 @@ interface TokenData {
 
 // * Components * //
 
-const getToken = (): string | null => localStorage.getItem("tkd4d249365dab");
+const getToken = (): string | null => {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem("vN$y*K}d=2@J,x8q");
+  }
+  return null;
+};
 const api: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL || 'http://localhost:3000/api',
   headers: {
@@ -30,7 +36,7 @@ api.interceptors.response.use(
       if (error.response.status === 401) {
         setTimeout(() => {
           window.location.href = "/auth";
-        }, 3000);
+        }, 4000);
       }
     }
 

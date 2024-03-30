@@ -10,7 +10,7 @@ import checkVerifyJwt from "@/server/helpers/checkVerifyJwt";
 export async function GET(req: NextRequest) {
     try {
         const payload = checkVerifyJwt(req);
-        return NextResponse.json({ status: 'success', data: payload });
+        if (payload instanceof NextResponse) { return payload; }
         return UserController.userInfo(req, payload)
     }catch (error: any) {
        return getErrorResponse(500, error.message);

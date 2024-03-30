@@ -15,7 +15,7 @@ import MenuList from './menuList';
 // * Components * //
 export default function SideBar(): JSX.Element {
     return (
-        <nav className="w-55 h-full card-gray relative text-slate-700 dark:text-slate-50" >
+        <nav className="w-55 min-h-95 h-full card-gray relative text-slate-700 dark:text-slate-50" >
             <DivEffect>
                 <React.Fragment>
                     <ConnectionTreatmentPoints />

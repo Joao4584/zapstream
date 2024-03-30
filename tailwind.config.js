@@ -1,9 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   darkMode: 'class',
   theme: {
@@ -174,6 +172,11 @@ module.exports = {
       },
       minHeight: {
         16: '16rem',
+        22.5: '5.625rem',
+        42.5: '10.625rem',
+        47.5: '11.875rem',
+        75: '18.75rem',
+        95: '27.75rem',
       },
       zIndex: {
         999999: '999999',

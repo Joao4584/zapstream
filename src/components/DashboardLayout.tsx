@@ -10,8 +10,6 @@ import { MainPattern } from "./ui/GridPattern";
 import SideBar from "./sideBar";
 import { AuthProvider } from "@/src/context/AuthContext";
 
-
-
 // * Components * //
 export default function DashboardLayout({ children }: ChildrenProps) {
 
@@ -30,7 +28,7 @@ export default function DashboardLayout({ children }: ChildrenProps) {
 
     return (
         <AuthProvider>
-            <main className="relative w-screen h-screen z-10 relative p-2">
+            <main className="relative w-screen h-screen overflow-x-hidden z-10 relative p-2">
                 <MainPattern />
                 <div className="flex w-full h-full">
                     <SideBar />

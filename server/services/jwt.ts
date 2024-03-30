@@ -18,7 +18,6 @@ export default class AuthJWT {
             const payload = jwt.verify(tokenJWT, getEnvVariable("JWT_SECRET_KEY")) as TokenPayloadJWT;
             return payload;
         } catch (error) {
-            console.error('Erro ao verificar o token JWT:', error);
             return false;
         }
     }

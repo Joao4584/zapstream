@@ -1,42 +1,39 @@
+'use client';
+
 import { useCallback, useState } from 'react';
 
 export default function useLocalStorage(key: string, initialValue: any = '') {
-
-
   let INIT = initialValue;
 
-  if (INIT == '') {
+  if (typeof localStorage !== 'undefined') {
     const verify = localStorage.getItem(key);
     if (verify != null || verify != undefined) {
-
       try {
         INIT = JSON.parse(verify);
-      }
-      catch (e) {
+      } catch (e) {
         INIT = '';
       }
-
     }
   }
 
-  const [state, setState] = useState(
-    () => {
-      try {
-
+  const [state, setState] = useState(() => {
+    try {
+      if (typeof localStorage !== 'undefined') {
         const storedValue = localStorage.getItem(key);
         return storedValue ? JSON.parse(storedValue) : INIT;
-
-      } catch {
+      } else {
         return INIT;
       }
-    });
+    } catch {
+      return INIT;
+    }
+  });
 
   const setValue = useCallback((value: any) => {
     try {
-      if (value != '') {
+      if (typeof localStorage !== 'undefined' && value !== '') {
         setState(value);
         localStorage.setItem(key, JSON.stringify(value));
-
       }
     } catch (error) {
       console.log(error);
@@ -44,5 +41,4 @@ export default function useLocalStorage(key: string, initialValue: any = '') {
   }, [key]);
 
   return [state, setValue];
-
 }

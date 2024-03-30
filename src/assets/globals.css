@@ -19,3 +19,27 @@ body {}
    /* Altere o valor do desfoque conforme desejado */
    @apply rounded-2xl border border-gray-1
 }
+
+
+.animate-poing {
+   animation: poing infinite 1s linear;
+}
+
+@keyframes poing {
+   0% {
+      transform: translateY(0px);
+   }
+
+   100% {
+      transform: translateX(5px);
+   }
+}
+
+.random-bg-space {
+   background-image: url("https://source.unsplash.com/random/?code,galaxy");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   width: 100vw;
+   height: 100vh;
+}
