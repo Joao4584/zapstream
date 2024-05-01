@@ -5,7 +5,7 @@ export const LoginUserSchema = z.object({
     .string({
       required_error: "User is required",
     })
-    .min(7, "Full user is required"),
+    .min(3, "Full user is required"),
     password: z
       .string({
         required_error: "Password is required",

@@ -3,6 +3,8 @@ import { ReactElement } from "react";
 import { FaBell, FaBorderTopLeft, FaReceipt } from "react-icons/fa6";
 import { FaProjectDiagram } from "react-icons/fa";
 import { TbNetwork } from "react-icons/tb";
+import { Settings, Settings2 } from "lucide-react";
+import { RiSettings2Fill } from "react-icons/ri";
 // * Exports * //
 
 export interface RouteDashboardProps {
@@ -35,6 +37,11 @@ export const routeDashboard: RouteDashboardProps[] = [
         title: "Logs",
         icon: <FaReceipt />,
         path: "/logs"
+    },
+    {
+        title: "Configurações",
+        icon: <RiSettings2Fill />,
+        path: "/config"
     }
 
 ];

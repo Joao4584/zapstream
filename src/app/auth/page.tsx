@@ -4,34 +4,59 @@ import Logo from '@/public/images/logo.png'
 import { CardBanner, CardText, ContainerSection, LogoImg } from "./index.styles";
 import { DivEffect } from "@/src/lib/motion/Effects";
 import React, { useState } from "react";
-import { AxiosError, AxiosResponse } from "axios";
 import { Button } from '@/src/components/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/src/components/ui/popover';
 import Image from 'next/image';
 import { sendLogin } from './login.request';
-import { Toast } from '@/src/components/ui/toast';
-import { Toaster } from 'sonner';
-
+import { toast } from "sonner"
+import dayjs from 'dayjs';
+import { setToken } from '@/src/lib/token';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  //  const { setToken, getToken } = useContext(AuthContext);
-
+  const router = useRouter();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [loadings, setLoadings] = useState<boolean>();
+  const [loadings, setLoadings] = useState<boolean>(false);
 
   const login = async () => {
-    const result = await sendLogin({ user: user, password: password });
-    if (result != false) {
-      console.log(result)
+    if (user.length < 1) {
+      toast.warning(`Preencha um usuario valido.`);
+      return;
     }
+
+    if (password.length <= 7) {
+      toast.warning(`Senha não pode ser menor que 8 caracteres.`);
+      return;
+    }
+
+    setLoadings(true);
+    toast.message('Buscando..', {
+      description: dayjs().locale('pt-br').format('DD/MM/YYYY HH:mm:ss'),
+      action: {
+        label: "Fechar",
+        onClick: () => { },
+      },
+
+    })
+
+    setTimeout(async () => {
+      const result: any = await sendLogin({ user: user, password: password });;
+      if (result.success === false) {
+        console.error('Erro de login:', result.message);
+        toast.error(`Erro: ${result.message}`);
+      } else {
+        console.log(result);
+        toast.success('Login realizado com sucesso!');
+        setToken(result.data.hash);
+        router.push('/dashboard');
+      }
+    }, 2000);
+
+    setLoadings(false);
   }
-
-
 
   return (
     <React.Fragment>
-      <Toaster duration={9000} />
       <ContainerSection >
         <CardBanner >
           <DivEffect>
@@ -62,7 +87,7 @@ export default function LoginPage() {
                   <Button
                     className="w-full h-12 block !bg-indigo-500 hover:!bg-indigo-400 focus:!bg-indigo-400 text-white font-semibold rounded-lg
                                         px-4 py-3 mt-6 hover:!text-white"
-
+                    disabled={loadings}
                     onClick={login}
                   >
                     Entrar

@@ -10,25 +10,19 @@ interface sendLoginProps {
     user: string;
     password: string
 }
-export const sendLogin = async ({ user, password }: sendLoginProps): Promise<AxiosResponse<any, any> | boolean> => {
-    const { toast } = useToast()
-
+export const sendLogin = async ({ user, password }: sendLoginProps): Promise<AxiosResponse<any, any> | { success: boolean, message: string }> => {
     try {
-        const response = await api.post('/auth/login', {
-            user: user,
-            password: password
-        });
+        const response = await api.post('/auth/login', { user, password });
         return response;
     } catch (error: any) {
         console.error('Erro durante a requisição:', error);
-        if (error.isAxiosError && error.response && error.response.status >= 400 && error.response.status < 500) {
-            toast({
-                variant: "destructive",
-                title: "Uh oh! Something went wrong.",
-                description: "There was a problem with your request.",
-                action: <ToastAction altText="Try again">Try again</ToastAction>,
-            })
+
+        if (error.isAxiosError && error.response) {
+            const status = error.response.status;
+            const message = error.response.data.message || 'Erro ao fazer login';
+            return { success: false, message };
         }
-        return false;
+
+        return { success: false, message: 'Erro inesperado ao tentar fazer login' };
     }
-}
+};

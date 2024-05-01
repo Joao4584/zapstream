@@ -1,6 +1,7 @@
 'use client';
 // * Modules * //
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
+import { getToken } from "./token";
 
 // * Exports * //
 
@@ -11,12 +12,6 @@ interface TokenData {
 
 // * Components * //
 
-const getToken = (): string | null => {
-  if (typeof localStorage !== 'undefined') {
-    return localStorage.getItem("vN$y*K}d=2@J,x8q");
-  }
-  return null;
-};
 const api: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL || 'http://localhost:3000/api',
   headers: {
