@@ -19,13 +19,16 @@ export default function LoginPage() {
   const [loadings, setLoadings] = useState<boolean>(false);
 
   const login = async () => {
+    setLoadings(true);
     if (user.length < 1) {
       toast.warning(`Preencha um usuario valido.`);
+      setLoadings(false);
       return;
     }
 
     if (password.length <= 7) {
       toast.warning(`Senha não pode ser menor que 8 caracteres.`);
+      setLoadings(false);
       return;
     }
 
@@ -44,7 +47,11 @@ export default function LoginPage() {
       if (result.success === false) {
         console.error('Erro de login:', result.message);
         toast.error(`Erro: ${result.message}`);
+
+        setLoadings(false);
       } else {
+
+        setLoadings(false);
         console.log(result);
         toast.success('Login realizado com sucesso!');
         setToken(result.data.hash);
@@ -52,7 +59,6 @@ export default function LoginPage() {
       }
     }, 2000);
 
-    setLoadings(false);
   }
 
   return (

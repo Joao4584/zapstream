@@ -1,7 +1,9 @@
 import "@/src/assets/globals.css";
+
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+
 import DashboardLayout from "@/src/components/DashboardLayout";
 import { Inter } from 'next/font/google'
-import { redirect } from "next/navigation";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +19,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <link rel="icon" href="/favicon.ico" type="image/ico" />
             </head>
             <body className={`w-screen h-screen relative ${inter.className}`}>
-
                 <DashboardLayout>
                     {children}
                 </DashboardLayout>

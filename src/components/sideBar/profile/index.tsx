@@ -35,7 +35,7 @@ export default function UserProfile(props: UserProfileProps) {
                                 <span className="text-xs text-slate-300">{getCurrentGreating()}</span>
                             </DivEffect>
                             <DivEffect delay={0.2}>
-                                <h4 className="text-base font-semibold" style={{ lineHeight: '17.5px' }}>João Roberto</h4>
+                                <h4 className="text-sm font-semibold" style={{ lineHeight: '17.5px' }}>João Roberto</h4>
                             </DivEffect>
                         </div>
                     </div>
