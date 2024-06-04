@@ -52,7 +52,7 @@ export default function CardsHability(): ReactElement {
                     type: "spring",
                     stiffness: 80,
                     damping: 20,
-                    delay: .6,
+                    delay: .3,
                     delayChildren: 0.3,
                     staggerChildren: 0.2
                 }}

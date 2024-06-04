@@ -378,6 +378,16 @@ export interface ApiPaginaInicialPaginaInicial extends Schema.SingleType {
     sub_titulo: Attribute.Text;
     logo: Attribute.Media;
     banner_principal: Attribute.Media;
+    quem_somos: Attribute.String;
+    quem_somos_descricao: Attribute.Text;
+    quem_somos_texto: Attribute.RichText;
+    pontos_sobre: Attribute.Enumeration<
+      [
+        '*Produtividade* em seus servi\u00E7os',
+        '*texto* teste',
+        '*texto2* teste2'
+      ]
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

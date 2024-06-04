@@ -22,6 +22,8 @@ export interface GetSchemaStrapi {
       sub_titulo: string,
       logo: any,
       banner_principal: any,
+      quem_somos: string,
+      quem_somos_texto: string
     },
   },
 }
@@ -48,15 +50,15 @@ async function getData(): Promise<null | GetSchemaStrapi> {
 
 export default async function Home() {
   const schema = await getData();
-
+  console.log(schema)
   return (
     <React.Fragment>
       <HeroSection schema={schema} />
       <CardsHability />
-      <CategoryHability />
+      <CategoryHability schema={schema} />
       <SolutionsExplore />
       <ShowRecommends />
-      <FooterBar />
+      <FooterBar schema={schema} />
     </React.Fragment>
   );
 }

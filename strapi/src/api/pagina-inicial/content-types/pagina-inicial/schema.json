@@ -39,6 +39,23 @@
         "videos",
         "audios"
       ]
+    },
+    "quem_somos": {
+      "type": "string"
+    },
+    "quem_somos_descricao": {
+      "type": "text"
+    },
+    "quem_somos_texto": {
+      "type": "richtext"
+    },
+    "pontos_sobre": {
+      "type": "enumeration",
+      "enum": [
+        "*Produtividade* em seus serviços",
+        "*texto* teste",
+        "*texto2* teste2"
+      ]
     }
   }
 }

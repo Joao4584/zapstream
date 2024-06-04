@@ -4,6 +4,7 @@
 import React, { ReactElement } from 'react'
 import { motion } from 'framer-motion';
 import { fadeIn, textVariant, textVariant2 } from '@/src/lib/motion/motion';
+import { FaWhatsapp } from 'react-icons/fa';
 // * Exports * //
 
 
@@ -17,16 +18,16 @@ export default function ShowRecommends() {
                 <div className="flex flex-col items-center lg:flex-row">
                     <div className="flex flex-col items-start justify-center w-full h-full pr-8 mb-10 lg:mb-0 lg:w-1/2">
                         <motion.h2 initial="hidden"
-                            whileInView="show" variants={textVariant(.1)} className="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-5xl xl:text-6xl"
+                            whileInView="show" variants={textVariant(.1)} className="text-3xl font-extrabold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-3xl lg:text-4xl xl:text-5xl"
                         >
-                            Testimonials
+                            Envie sua duvida
 
                         </motion.h2>
                         <motion.div initial="hidden"
                             whileInView="show" variants={textVariant(.1)}
                         >
-                            <p className="my-6 text-lg text-gray-600">Don't just take our word for it, read from our extensive list of case studies and customer testimonials.</p>
-                            <a href="#_" className="flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo md:py-4 md:text-lg md:px-10" data-primary="indigo-600" data-rounded="rounded-md">View Case Studies</a>
+                            <p className="my-6 text-lg text-gray-600">Junte-se às muitas pessoas que já escolheram meus serviços de advocacia e entre em contato comigo para receber total suporte jurídico.</p>
+                            <a href="#_" className="flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-cyan-800 border border-transparent rounded-md shadow hover:bg-slate-600 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo md:py-4 md:text-lg md:px-10" data-primary="indigo-600" data-rounded="rounded-md">Enviar Mensagem <FaWhatsapp className='ml-5 w-6 h-6' /></a>
 
                         </motion.div>
                     </div>
