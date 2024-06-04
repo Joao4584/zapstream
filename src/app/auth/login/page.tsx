@@ -1,12 +1,12 @@
 'use client';
 
 import Logo from '@/public/images/logo.png'
-import { CardBanner, CardText, ContainerSection, LogoImg } from "./index.styles";
+import { CardBanner, CardText, ContainerSection, LogoImg } from "../index.styles";
 import { DivEffect } from "@/src/lib/motion/Effects";
 import React, { useState } from "react";
 import { Button } from '@/src/components/ui/button';
 import Image from 'next/image';
-import { sendLogin } from './login.request';
+import { sendLogin } from '../login.request';
 import { toast } from "sonner"
 import dayjs from 'dayjs';
 import { setToken } from '@/src/lib/token';

@@ -9,7 +9,7 @@ import ChildrenProps from "@/@types/children";
 import useColorMode from "../hooks/useColorMode";
 import { MainPattern } from "./ui/GridPattern";
 import SideBar from "./sideBar";
-import { AuthProvider } from "@/src/context/AuthContext";
+import { AuthProvider } from "@/src/hooks/use-auth/AuthContext";
 import { classNames } from "primereact/utils";
 
 // * Components * //
