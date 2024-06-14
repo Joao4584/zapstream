@@ -1,5 +1,4 @@
 'use client';
-import tw from "tailwind-styled-components"
 import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
 import { twMerge } from 'tailwind-merge';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
@@ -49,13 +48,13 @@ export default function DashboardLayout({ children }: ChildrenProps) {
             }
         }}>
             <AuthProvider>
-                <Main >
+                <main className="relative w-screen h-screen overflow-x-hidden overflow-y-hidden z-10 relative p-2">
                     <MainPattern />
-                    <CardMain >
+                    <div className="flex w-full h-full" >
                         <SideBar />
                         {children}
-                    </CardMain>
-                </Main>
+                    </div>
+                </main>
             </AuthProvider>
         </PrimeReactProvider>
     )
@@ -69,6 +68,3 @@ const setGlobalTheme = (theme: string) => {
         document.querySelector('body')?.classList.remove("white-body");
     }
 }
-
-const Main = tw.main`relative w-screen h-screen overflow-x-hidden overflow-y-hidden z-10 relative p-2`;
-const CardMain = tw.div`flex w-full h-full`;

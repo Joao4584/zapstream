@@ -20,6 +20,14 @@ body {}
    @apply rounded-2xl border border-gray-1
 }
 
+.close-button svg {
+   @apply w-10 h-10
+}
+
+.close-button {
+   @apply hover:bg-transparent -translate-y-1/2
+}
+
 
 .animate-poing {
    animation: poing infinite 1s linear;
@@ -55,29 +63,19 @@ body {}
 
 ::-webkit-scrollbar {
    width: 6px;
-   /* Largura da barra de rolagem */
    height: 6px;
-   /* Altura da barra de rolagem para áreas horizontais */
 }
 
-/* Estilos para a parte interna da barra de rolagem */
 ::-webkit-scrollbar-track {
    background-color: #605f614f;
-   /* Cor para o trilho da barra de rolagem */
    border-radius: 4px;
-   /* Bordas arredondadas para uma aparência suave */
 }
 
-/* Estilos para a parte móvel (polegar) da barra de rolagem */
 ::-webkit-scrollbar-thumb {
    background-color: #644b81dc;
-   /* Cor roxa para o polegar */
    border-radius: 4px;
-   /* Bordas arredondadas */
 }
 
-/* Efeito de hover para a barra de rolagem */
 ::-webkit-scrollbar-thumb:hover {
    background-color: #9d77b8c5;
-   /* Cor roxa mais escura no hover */
 }

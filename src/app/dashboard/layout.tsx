@@ -1,5 +1,5 @@
-import "@/src/assets/globals.css";
 
+import "@/src/assets/globals.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 import DashboardLayout from "@/src/components/DashboardLayout";

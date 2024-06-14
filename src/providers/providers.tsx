@@ -16,15 +16,29 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="light"
+      defaultTheme="dark"
       themes={themes}
       enableSystem={false}
     >
       <QueryClientProvider client={queryClient}>
-       
-          {children}
 
-          <Toaster />
+        {children}
+
+        <Toaster
+          position='top-right'
+          visibleToasts={3}
+          pauseWhenPageIsHidden
+          duration={70020}
+          toastOptions={{
+            closeButton: true,
+            classNames: {
+              closeButton: "absolute left-80 top-1/2 border-0 close-button",
+              icon: "mr-3",
+              description: "text-slate-500 text-xs"
+            }
+          }}
+          gap={10}
+        />
       </QueryClientProvider>
     </ThemeProvider>
   )

@@ -34,7 +34,7 @@ class AuthenticateLogin {
 		});
 
 		if (!user || !(await compare(this.password, user.password))) {
-			throw new Error("Invalid email or password");
+			throw new Error("Usuarío e senha incorretos.");
 		}
 		if (user) { await this.updateIpAddress(user.id, this.ip_access); }
 

@@ -30,7 +30,7 @@ api.interceptors.response.use(
 
       if (error.response.status === 401) {
         setTimeout(() => {
-          window.location.href = "/auth";
+          window.location.href = "/auth/login";
         }, 4000);
       }
     }
