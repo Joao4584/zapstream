@@ -4,7 +4,7 @@ module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: ['class'],
+  darkMode: 'class',
   theme: {
     extend: {
       keyframes: {
@@ -230,5 +230,5 @@ module.exports = {
       },
     },
   },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [],
 }

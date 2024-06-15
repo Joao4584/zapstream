@@ -1,16 +1,12 @@
 import { useEffect } from 'react';
 import useLocalStorage from './useLocalStorage';
+import { useTheme } from 'next-themes';
 
 const useColorMode = () => {
-  const [colorMode, setColorMode] = useLocalStorage('color-theme', 'light');
-
+  const [colorMode, setColorMode] = useLocalStorage('color-theme', 'dark');
+  const { setTheme } = useTheme();
   useEffect(() => {
-    const className = 'dark';
-    const bodyClass = window.document.body.classList;
-
-    colorMode === 'dark'
-      ? bodyClass.add(className)
-      : bodyClass.remove(className);
+    setTheme(colorMode);
   }, [colorMode]);
 
   return [colorMode, setColorMode];

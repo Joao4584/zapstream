@@ -1,18 +1,25 @@
-// * Modules * //
 import { ReactElement } from "react";
 import { FaBell, FaBorderTopLeft, FaReceipt } from "react-icons/fa6";
 import { FaProjectDiagram } from "react-icons/fa";
 import { TbNetwork } from "react-icons/tb";
-import { Settings, Settings2 } from "lucide-react";
 import { RiSettings2Fill } from "react-icons/ri";
-// * Exports * //
-
-export interface RouteDashboardProps {
+import { MdOutlineBroadcastOnHome } from "react-icons/md";
+import { FaUsers } from "react-icons/fa6";
+export interface RouteProps {
     title: string;
-    icon?: ReactElement;
+    icon: ReactElement;
     path: string;
 }
-export const routeDashboard: RouteDashboardProps[] = [
+
+export interface RouteGroup {
+    groupName: string;
+    icon: ReactElement;
+    routes: RouteProps[];
+}
+
+export type RouteDefinition = RouteProps | RouteGroup;
+
+export const routeDashboard: RouteDefinition[] = [
     {
         title: "Dashboard",
         icon: <FaBorderTopLeft />,
@@ -39,9 +46,19 @@ export const routeDashboard: RouteDashboardProps[] = [
         path: "/logs"
     },
     {
-        title: "Configurações",
-        icon: <RiSettings2Fill />,
-        path: "/config"
+        groupName: "Configurações",
+        icon: <RiSettings2Fill/>,
+        routes: [
+            {
+                title: "Gerais",
+                icon: <MdOutlineBroadcastOnHome />,
+                path: "/config"
+            },
+            {
+                title: "Usuários",
+                icon: <FaUsers />,
+                path: "/config/users"
+            }
+        ]
     }
-
 ];

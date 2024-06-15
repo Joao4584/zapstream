@@ -15,8 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={"pt-BR"} suppressHydrationWarning>
-      <body className={inter.className + "w-screen h-screen"}>
+    <html lang="pt-BR" suppressHydrationWarning >
+      <head>
+        <link rel="icon" href="/favicon.ico" type="image/ico" />
+      </head>
+      <body className={inter.className+ 'w-screen h-screen'} suppressHydrationWarning>
         <Providers>
           {children}
         </Providers>

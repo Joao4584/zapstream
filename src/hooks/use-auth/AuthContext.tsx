@@ -3,7 +3,7 @@
 import ChildrenProps from '@/@types/children';
 import React, { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { getInformationUserRequest } from './Auth.request';
-import LoadingPage from '../../components/loading/loadingPage';
+import LoadingPage from '../../components/loading/containerPage';
 
 const AuthContext = createContext<any>(undefined);
 

@@ -1,6 +1,13 @@
 import { toast } from "sonner";
 import { FaCheck, FaExclamationCircle, FaInfoCircle, FaTimesCircle } from "react-icons/fa";
 
+
+const iconsType = {
+  "success": <FaCheck className="h-5 w-5 text-green-500" />,
+  "warning":  <FaExclamationCircle className="h-5 w-5 text-yellow-500" />,
+  "error": <FaTimesCircle className="h-5 w-5 text-red-500" />,
+  "info": <FaInfoCircle className="h-5 w-5 text-blue-500" />
+}
 class Toasts {
   private message: string = '';
   private description?: string;
@@ -18,19 +25,8 @@ class Toasts {
     this.type = type;
   }
 
-  private getIcon() {
-    switch (this.type) {
-      case 'success':
-        return <FaCheck className="h-5 w-5 text-green-500" />;
-      case 'warning':
-        return <FaExclamationCircle className="h-5 w-5 text-yellow-500" />;
-      case 'error':
-        return <FaTimesCircle className="h-5 w-5 text-red-500" />;
-      case 'info':
-        return <FaInfoCircle className="h-5 w-5 text-blue-500" />;
-      default:
-        return null;
-    }
+  private getIcon() { 
+     return iconsType[this.type];
   }
 
   public show(): void {

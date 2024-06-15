@@ -43,14 +43,7 @@ body {}
    }
 }
 
-.random-bg-space {
-   background-image: url("https://source.unsplash.com/random/?code,galaxy");
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: center;
-   width: 100vw;
-   height: 100vh;
-}
+
 
 .rounded-min {
    border-radius: 0px;

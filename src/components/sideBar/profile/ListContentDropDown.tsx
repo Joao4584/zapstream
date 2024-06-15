@@ -11,6 +11,7 @@ import {
     PlusCircle,
     Settings,
     User,
+    SunMoon,
     UserPlus,
     Users,
 } from "lucide-react";
@@ -32,16 +33,20 @@ import {
 import { ReactElement } from "react";
 import { setToken } from "@/src/lib/token";
 import { useRouter } from 'next/navigation';
-
-
+import useColorMode from "@/src/hooks/useColorMode";
 
 export const ListContentDropDown = (): ReactElement => {
     const router = useRouter();
-
+    const [theme, setTheme] = useColorMode();
 
     const disconnectAuth = () => {
         setToken("");
         router.push('/auth');
+    }
+
+    const alterThemeColor = () => {
+        window.location.reload();
+        setTheme(theme == "dark" ? "light": "dark");
     }
 
     return (
@@ -61,6 +66,10 @@ export const ListContentDropDown = (): ReactElement => {
                     <Keyboard className="mr-2 h-4 w-4" />
                     <span>Atalhos de Teclado</span>
                     <DropdownMenuShortcut className="text-xs">ctrl + /</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={alterThemeColor}>
+                    <SunMoon className="mr-2 h-4 w-4" />
+                    <span>Modo {theme == "dark" ? "Claro" : "Escuro"}</span>
                 </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

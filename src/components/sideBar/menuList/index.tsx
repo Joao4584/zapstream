@@ -1,39 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from 'next/navigation';
-import { RouteDashboardProps, routeDashboard } from "@/src/routes/routes";
-import { DivEffect } from "@/src/lib/motion/Effects";
+import { routeDashboard, RouteDefinition, RouteProps, RouteGroup } from "@/src/routes/routes";
+import { motion } from "framer-motion";
+import GroupMenu from "./GroupMenu";
+import SingleMenu from "./SingleMenu";
 
-export default function MenuList() {
+const MenuList: React.FC = () => {
     const pathname = usePathname();
     const router = useRouter();
     const dashboardSegment = (pathname.split('/dashboard/')[1] || '').split('/')[0];
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        const currentIndex = routeDashboard.findIndex((route: any) =>
+            route.path === "/" + dashboardSegment ||
+            (route instanceof Object && 'routes' in route && Array.isArray(route.routes) && route.routes.some((subRoute: RouteProps) => subRoute.path === "/" + dashboardSegment))
+        );
+        setActiveIndex(currentIndex);
+    }, [pathname]);
 
     return (
-        <div className="mt-4">
+        <div className="mt-4 relative">
+            {activeIndex !== null && (
+                <motion.span
+                    className="absolute left-0 bg-green-700 w-1.5 h-11 rounded-br-xl rounded-tr-xl shadow-green-800 shadow-md"
+                    layoutId="activeIndicator"
+                    initial={{ y: 0 }}
+                    animate={{ y: activeIndex * 48 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+            )}
             <ul>
-                {
-                    routeDashboard.map((route: RouteDashboardProps, i: number) => {
-                        const isActive = "/" + dashboardSegment === route.path;
-                        return (
-                            <li
-                                key={i}
-                                className={`items-center cursor-pointer rounded-sm text-sm relative dark:hover:bg-slate-500 dark:hover:bg-opacity-20 dark:hover:text-slate-200 ${isActive ? 'text-black dark:text-slate-200' : 'dark:text-slate-300'}`}
-                                onClick={() => router.push(`/dashboard/${route.path}`)}
-                            >
-                                <span className={`absolute left-0 bg-green-700 w-1.5 top-1/2 -translate-y-1/2 h-4/5 rounded-br-xl rounded-tr-xl shadow-green-800 shadow-md ${isActive ? "opacity-1" : "opacity-0"}`} />
-                                <DivEffect whileTap={{ scale: 0.9 }} delay={i / 10}>
-                                    <div className="flex w-full mt-1 py-3 px-6">
-                                        <span className="mr-3 icon-menu-svg">
-                                            {route.icon}
-                                        </span>
-                                        {route.title}
-                                    </div>
-                                </DivEffect>
-                            </li>
-                        )
-                    })
-                }
+                {routeDashboard.map((route, i) => (
+                    <React.Fragment key={i}>
+                        {isRouteGroup(route) ? (
+                            <GroupMenu group={route as RouteGroup} dashboardSegment={dashboardSegment} router={router} />
+                        ) : (
+                            <SingleMenu route={route as RouteProps} isActive={"/" + dashboardSegment === route.path} router={router} />
+                        )}
+                    </React.Fragment>
+                ))}
             </ul>
         </div>
-    )
+    );
+};
+
+export default MenuList;
+
+function isRouteGroup(route: RouteDefinition): route is RouteGroup {
+    return 'groupName' in route;
 }
