@@ -23,7 +23,7 @@ const MenuList: React.FC = () => {
         <div className="mt-4 relative">
             {activeIndex !== null && (
                 <motion.span
-                    className="absolute left-0 bg-green-700 w-1.5 mt-1 mxd:mt-0 h-10 mxd:h-10 rounded-br-xl rounded-tr-xl shadow-green-800 shadow-md"
+                    className="absolute left-0 bg-green-700 w-1.5 mt-1.5 mxd:mt-0 h-10 mxd:h-10 rounded-br-xl rounded-tr-xl shadow-green-800 shadow-md"
                     layoutId="activeIndicator"
                     initial={{ y: 0 }}
                     animate={{ y: activeIndex * 48 }}
