@@ -50,7 +50,7 @@ export const ListContentDropDown = (): ReactElement => {
     }
 
     return (
-        <DropdownMenuContent className="w-64 ml-50 -mt-1">
+        <DropdownMenuContent className="w-64 ml-50 mxd:ml-19 -mt-1 mxd:-mt-6">
             <DropdownMenuLabel className="">Minha Conta</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
