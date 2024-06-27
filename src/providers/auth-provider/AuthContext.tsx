@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
     const [userInfo, setUserInfo] = useState<any>(null);
 
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         getInformationUser();
     }, []);
 

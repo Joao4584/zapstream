@@ -24,12 +24,10 @@ class AuthenticateLogin {
 		this.ip_access = ip_access;
 	}
 
-	public async verifyAuth() {
+	public async verify() {
 		const user = await prisma.users.findFirst({
 			where: { 
-				OR: [
-					{ user: this.user }, { email: this.user },
-				]
+				OR: [ { user: this.user }, { email: this.user } ]
 			},
 		});
 

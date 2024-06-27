@@ -9,8 +9,14 @@ const nextConfig = {
               destination: '/auth/login',
               permanent: true, 
             },
-          ];
+            {
+              source: '/',
+              destination: '/dashboard',
+              permanent: true
+            }
+        ];
     },
+
     
 }
 

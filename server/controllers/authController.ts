@@ -5,7 +5,7 @@ import moment from "moment";
 // * Exports * //
 import Logs from "../services/logs";
 import { RegisterUserInput } from "@/src/app/api/auth/register/register.schema";
-import { AuthenticateLogin } from "../models/authenticateLogin";
+import { AuthenticateLogin } from "../models/authenticate";
 import { LoginUserInput } from "@/src/app/api/auth/login/login.schema";
 import AuthJWT from "../services/jwt";
 // import { UseJsonWebToken } from "../models/usageJsonWebToken";
@@ -17,7 +17,7 @@ export const login = async(req: Request, data: LoginUserInput) =>{
 
     try {
         const login = new AuthenticateLogin(data.user, data.password, ip);
-        const user = await login.verifyAuth();
+        const user = await login.verify();
         if (user) {
             Logs.create(
                 "Logado no sistema",

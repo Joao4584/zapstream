@@ -9,7 +9,7 @@ import { ConnectionTreatmentPoints } from './ConnectionTreatmentPoints';
 import UserProfile from './profile';
 import { DivEffect } from '@/src/lib/motion/Effects';
 import Divider from '../ui/divider';
-import MenuList from './menuList';
+import MenuList from './menu';
 
 
 // * Components * //

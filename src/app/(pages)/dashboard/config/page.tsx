@@ -1,11 +1,12 @@
 import BreadCrumb from "@/src/components/breadCrumb";
 import UserPage from "./User";
+import React from "react";
 
 export default function Main() {
     return (
-        <div className="w-10/12 h-full overflow-y-auto overflow-x-hidden">
+        <React.Fragment>
             <BreadCrumb />
             <UserPage />
-        </div>
+        </React.Fragment>
     );
 }

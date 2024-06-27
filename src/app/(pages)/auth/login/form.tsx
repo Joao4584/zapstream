@@ -51,7 +51,9 @@ const FormLoginComponent: React.FC = () => {
                 toastHandler.setType('success');
                 toastHandler.show();
                 setToken(result.data.hash);
-                router.push('/dashboard');
+                setTimeout(() => {
+                    router.push('/dashboard');
+                }, 2000);
             }
         } catch (error) {
             console.error('Erro durante a requisição de login:', error);
