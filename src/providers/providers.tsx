@@ -30,14 +30,22 @@ export function Providers({ children }: { children: ReactNode }) {
           position='top-right'
           visibleToasts={3}
           pauseWhenPageIsHidden
-          duration={70020}
+          duration={3600}
           toastOptions={{
             closeButton: true,
             classNames: {
-              closeButton: "absolute left-80 top-1/2 border-0 close-button",
-              icon: "mr-3",
+              closeButton: "absolute left-80 top-1/2 border-0 close-button dark:hover:opacity-20",
+              icon: "mr-4 ml-1",
               description: "text-slate-500 text-xs",
-              toast: "dark:bg-slate-500 dark:bg-opacity-80 dark:border-gray-500 text-gray-700"
+              toast: `
+                dark:bg-gray-800
+                dark:bg-opacity-60
+                dark:backdrop-blur-sm
+                dark:border-gray-700
+                dark:text-gray-400
+                text-gray-700
+                
+              `
             }
           }}
           gap={10}

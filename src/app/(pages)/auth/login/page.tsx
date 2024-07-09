@@ -4,11 +4,13 @@ import { DivEffect } from '@/src/lib/motion/Effects';
 import Image from 'next/image';
 import Logo from '@/public/images/logo.png';
 import FormLoginComponent from './form';
+import Head from 'next/head';
 
 export default function LoginPage() {
 
   return (
-    <section className="flex md:flex-row h-screen items-center">
+    <React.Fragment>
+       <section className="flex md:flex-row h-screen items-center">
       <div className='bg-blue-900 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen'>
         <DivEffect>
           <Image src={Logo} alt="Icon Home" className='absolute top-5 left-6 opacity-100 z-50 saturate-50' style={{ width: "48px", height: "46px" }} />
@@ -25,5 +27,8 @@ export default function LoginPage() {
           </DivEffect>
         </div>
       </div>
-    </section>);
+    </section>
+    </React.Fragment>
+  
+  );
 }

@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 
-body {}
+body {
+   width: 100vw;
+   height: 100vh;
+   position: relative;
+}
 
 .white-body {
    background-color: rgb(248, 248, 248);
@@ -20,6 +24,10 @@ body {}
    @apply rounded-2xl border border-gray-1
 }
 
+.gray-glass {
+   background-image: radial-gradient(circle 732px at -23.9% -25.1%, rgba(97, 82, 109, 0.062) 6.1%, rgba(179, 163, 170, 0.062) 100.2%) !important;
+   backdrop-filter: blur(10px) !important;
+}
 .close-button svg {
    @apply w-10 h-10
 }

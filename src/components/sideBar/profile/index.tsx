@@ -6,7 +6,7 @@ import {
     DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu"
 import { DivEffect } from "@/src/lib/motion/Effects";
-import { getCurrentGreating } from "@/src/lib/getCurrentGreeting";
+import { getCurrentGreating } from "@/src/lib/constants/getCurrentGreeting";
 import { ListContentDropDown } from "./ListContentDropDown";
 
 
