@@ -51,7 +51,9 @@ const FormLoginComponent: React.FC = () => {
                 toastHandler.setType('success');
                 toastHandler.show();
                 setToken(result.data.hash);
-                window.location.href = "/dashboard";
+                setTimeout(() => {
+                    window.location.href = "/dashboard";
+                }, 2000);
             }
         } catch (error) {
             console.error('Erro durante a requisição de login:', error);

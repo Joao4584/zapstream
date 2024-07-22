@@ -19,7 +19,9 @@ const SingleMenu: React.FC<SingleMenuProps> = ({ route, isActive, router, classN
                 <span className="mr-3 icon-menu-svg">
                     {route.icon}
                 </span>
-                {route.title}
+                <span className="mxd:hidden text-sm">
+                    {route.title}
+                </span>
             </div>
         </DivEffect>
     </li>

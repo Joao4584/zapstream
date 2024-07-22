@@ -46,7 +46,7 @@ interface LazyTableState {
     filters: DataTableFilterMeta;
 }
 
-export const ListTable = () => {
+export const UsersTable = () => {
     const [products, setProducts] = useState<any>();
     const [loading, setLoading] = useState<boolean>(false);
     const [totalRecords, setTotalRecords] = useState<number>(0);

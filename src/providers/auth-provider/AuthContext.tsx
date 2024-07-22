@@ -11,15 +11,15 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
     const [userInfo, setUserInfo] = useState<any>(null);
 
 
-    useLayoutEffect(() => {
-        getInformationUser();
+    useEffect(() => {
+            getInformationUser();
     }, []);
 
     const getInformationUser = async () => {
         try {
             const response = await getInformationUserRequest();
             const userData = response.data;
-            setUserInfo(userData);
+                setUserInfo(userData);
         } catch (error) {
             console.error('Erro ao obter informações do usuário:', error);
         }

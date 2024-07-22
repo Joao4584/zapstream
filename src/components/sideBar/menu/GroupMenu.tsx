@@ -26,8 +26,8 @@ const GroupMenu: React.FC<GroupMenuProps> = ({ group, dashboardSegment, router }
                 <motion.div whileTap={{ scale: 0.95 }}>
                     <div className="flex w-full mt-1 py-3 px-6">
                         <span className="mr-3 icon-menu-svg">{group.icon}</span>
-                        <span className="flex-1">{group.groupName}</span>
-                        <span className="ml-3 mt-0.5 icon-menu-svg">
+                        <span className="flex-1 mxd:hidden">{group.groupName}</span>
+                        <span className="ml-3 mxd:hidden mt-0.5 icon-menu-svg">
                             {isOpen ? <RiArrowDownDoubleLine /> : <RiArrowRightDoubleLine />}
                         </span>
                     </div>

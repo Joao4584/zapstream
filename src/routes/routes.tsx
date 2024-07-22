@@ -1,8 +1,9 @@
 import { ReactElement } from "react";
-import { FaBell, FaBorderTopLeft, FaReceipt } from "react-icons/fa6";
-import { FaProjectDiagram } from "react-icons/fa";
+import { FaBell, FaBorderTopLeft, FaPeopleGroup, FaReceipt } from "react-icons/fa6";
+import { FaProjectDiagram, FaUser } from "react-icons/fa";
 import { TbNetwork } from "react-icons/tb";
 import { RiSettings2Fill } from "react-icons/ri";
+import { TiUser } from "react-icons/ti";
 import { MdOutlineBroadcastOnHome } from "react-icons/md";
 import { FaUsers } from "react-icons/fa6";
 export interface RouteProps {
@@ -56,8 +57,13 @@ export const routeDashboard: RouteDefinition[] = [
             },
             {
                 title: "Usuários",
-                icon: <FaUsers />,
+                icon: <TiUser />,
                 path: "/config/users"
+            },
+            {
+                title: "Grupos",
+                icon: <FaUsers />,
+                path: "/config/groups"
             }
         ]
     }

@@ -1,13 +1,14 @@
 
 import BreadCrumb from '@/src/components/breadCrumb';
 import { ListTable } from './List';
+import React from 'react';
 
 export default function Main() {
 
     return (
-        <div className="w-10/12 ml-2 h-full overflow-y-auto overflow-x-hidden">
+        <React.Fragment>
             <BreadCrumb />
             <ListTable />
-        </div>
+        </React.Fragment>
     );
 }
