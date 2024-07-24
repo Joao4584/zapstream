@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 
 // * Exports * //
 import { getErrorResponse } from "@/server/helpers";
-import { RegisterUserInput, RegisterUserSchema } from "./register.schema";
+import { RegisterUserInput, RegisterUserSchema } from "@schema/server/auth.schema";
 import * as AuthController from "@/server/controllers/authController";
  
 // * Components * //

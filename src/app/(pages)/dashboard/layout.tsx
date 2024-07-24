@@ -5,6 +5,8 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 import DashboardLayout from "@/src/components/layout/DashboardLayout";
 import { Inter } from 'next/font/google'
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +18,9 @@ export const metadata = {
 export default async function PropsLayout({ children }: { children: React.ReactNode }) {
     return (
                 <DashboardLayout>
-                    {children}
+                    <Suspense fallback={<Loading />}>
+                        {children}
+                    </Suspense>
                 </DashboardLayout>
     );
 }

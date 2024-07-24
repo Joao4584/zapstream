@@ -4,8 +4,8 @@ import { ZodError } from "zod";
 
 // * Exports * //
 import { getErrorResponse } from "@/server/helpers";
-import { LoginUserSchema, LoginUserInput } from "./login.schema";
-import * as AuthController from "@/server/controllers/authController";
+import { LoginUserSchema, LoginUserInput } from "@schema/server/auth.schema";
+import * as AuthController from "@server/controllers/authController";
 
 // * Components * //
 export async function POST(req: NextRequest) {

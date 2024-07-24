@@ -1,9 +1,9 @@
 'use client';
 
-import { ReactNode, useEffect, useLayoutEffect, useState } from "react";
+import { ReactNode, Suspense, useEffect, useLayoutEffect, useState } from "react";
 
 // * Exports * //
-import ChildrenProps from "@/@types/children";
+import ChildrenProps from "@type/children";
 import useColorMode from "@/src/hooks/useColorMode";
 import { MainPattern } from "@/src/components/ui/GridPattern";
 import SideBar from "@/src/components/sideBar";
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: ChildrenProps) {
                         <div className="flex w-full h-full ">
                             <SideBar />
                             <div className="w-10/12 pl-1 h-full overflow-y-auto overflow-x-hidden">
-                            {children}
+                                {children}
                             </div>
                         </div>
                     </main>
