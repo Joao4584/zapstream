@@ -12,6 +12,7 @@ datasource db {
 
 model Users {
   id          Int       @id @default(autoincrement())
+  system_id   Int?
   user        String    @unique
   name        String    @db.VarChar(240)
   password    String    @db.Text
@@ -19,10 +20,20 @@ model Users {
   image_url   String    @default("") @db.Text
   status      Boolean   @default(true)
   verify_code String?   @db.VarChar(13)
-  ip_acess    String?   @db.VarChar(45)
+  ip_access   String?   @db.VarChar(45)
   created_at  DateTime  @default(now())
   updated_at  DateTime? @updatedAt
   Logs        Logs[]
+  System      System?   @relation(fields: [system_id], references: [id])
+}
+
+model System {
+  id         Int       @id @default(autoincrement())
+  language   String?   @db.VarChar(8)
+  status     Boolean   @default(true)
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+  Users      Users[]
 }
 
 model Logs {

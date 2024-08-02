@@ -64,7 +64,7 @@ class AuthenticateLogin {
 	private async updateIpAddress(userId: number, ip_access: string | null): Promise<void> {
 		await prisma.users.update({
 			where: { id: userId }, 
-			data: { ip_acess: ip_access },
+			data: { ip_access: ip_access },
 		});
 	}
 }

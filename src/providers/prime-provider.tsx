@@ -70,7 +70,30 @@ export function PrimeProvider({ children }: { children: ReactNode }) {
                     className: 'text-gray-900 dark:text-gray-300 hover:bg-gray-400 hover:bg-opacity-40 rounded-sm dark:hover:bg-gray-600',
                   },
                 }
+            },
+            splitbutton: {
+              root: {
+                className: 'dark:bg-gray-800 dark:text-white',
               },
+              button: {
+                className: 'dark:bg-gray-700 dark:border-gray-600 hover:dark:bg-gray-600',
+              },
+              menuButton: {
+                className: 'dark:bg-gray-700 dark:border-gray-600 hover:dark:bg-gray-600',
+                badge: {
+                  className: 'dark:bg-red-100',
+                },
+              },
+              menu: {
+                className: 'dark:bg-gray-800 dark:border-gray-600',
+              },
+              menuitem: {
+                className: 'dark:hover:bg-gray-700 dark:text-white',
+              },
+              menubutton: {
+                className: 'dark:text-gray-300',
+              },
+            },
         },
       }}
     >

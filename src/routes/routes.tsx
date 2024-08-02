@@ -22,7 +22,7 @@ export type RouteDefinition = RouteProps | RouteGroup;
 
 export const routeDashboard: RouteDefinition[] = [
     {
-        title: "Dashboard",
+        title: "Overview",
         icon: <FaBorderTopLeft />,
         path: "/"
     },
@@ -37,9 +37,9 @@ export const routeDashboard: RouteDefinition[] = [
         path: "/projects"
     },
     {
-        title: "Automações",
+        title: "Conexões",
         icon: <TbNetwork />,
-        path: "/automation"
+        path: "/connections"
     },
     {
         title: "Logs",
