@@ -43,6 +43,7 @@ model Logs {
   reference  String
   title      String
   content    String
+  ip_access  String?   @db.VarChar(45)
   created_at DateTime? @default(now())
   user       Users     @relation(fields: [user_id], references: [id])
 }

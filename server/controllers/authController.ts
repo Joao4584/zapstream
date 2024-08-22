@@ -4,64 +4,69 @@ import moment from "moment";
 
 // * Exports * //
 import Logs from "../services/logs";
-import { RegisterUserInput } from "@/src/app/api/auth/register/register.schema";
 import { AuthenticateLogin } from "../models/authenticate";
-import { LoginUserInput } from "@/src/app/api/auth/login/login.schema";
 import AuthJWT from "../services/jwt";
-// import { UseJsonWebToken } from "../models/usageJsonWebToken";
+import { Hono, type Context, type ContextSchema } from "hono";
+import { validateSchema } from "../middlewares/validationSchema";
+import { LoginUserSchema, RegisterUserSchema, type LoginUserInput, type RegisterUserInput } from "@/schema/server/auth.schema";
+import { authenticationJWT } from "../middlewares/authentication";
+import * as HeaderHelper from "@/server/helpers/getHeaders";
+export const authController = new Hono();
 
-// * Components * //
+authController.post('/login', validateSchema(LoginUserSchema), async (c : ContextSchema) => {
+  const data: LoginUserInput = c.getData;
+  const ip = HeaderHelper.getIP(c);
 
-export const login = async(req: Request, data: LoginUserInput) =>{
-    const ip = req.headers.get('x-forwarded-for');
+  try {
+      const login = new AuthenticateLogin(data.user, data.password, ip);
+      const user = await login.verify();
+      if (user) {
+          const hash = AuthJWT.create({ user: user.user, name: user.name, id: user.id})
 
-    try {
-        const login = new AuthenticateLogin(data.user, data.password, ip);
-        const user = await login.verify();
-        if (user) {
-            Logs.create(
-                "Logado no sistema",
-                "logged_sucess",
-                "Usuário logado com <b>Sucesso</b> no sistema!",
-                user.id
-            );
+          if(hash){
+            Logs.create({
+                title: "Logado no sistema",
+                reference: "logged_success",
+                content: "Usuário logado com <b>Sucesso</b> no sistema!",
+                user_id: user.id,
+                context: c
+            });
 
-            const hash = AuthJWT.create({ user: user.user, name: user.name, id: user.id})
-            
-            if(hash){
-                return NextResponse.json({ message: "Logado com sucesso.", hash: hash });
-            } else{
-                return NextResponse.json({ message: "Token hash não foi gerado." }, { status: 400 });
-            }
-        } else {
-            return NextResponse.json({ message: "Não foi possível fazer o login." }, { status: 400 });
-        }
-    } catch (error: any) {
-        return NextResponse.json({ status: 'fail', message: error.message }, { status: 400 });
-    }
-};
+            return c.json({ code: "success" , message: "Logado com sucesso.", hash: hash }, 200);
+          } else{
+            return c.json({ code: 'invalid_login',  message: "Token hash não foi gerado." }, 400);
+          }
+      } else {
+          return c.json({ code: 'invalid_login',  message: "Não foi possível fazer o login." }, 400);
+      }
+  } catch (error: any) {
+    return c.json({ code: 'fail', message: error.message }, 400);
+  }
+  
+});
 
-	
-export const register = async (req: NextRequest, data: RegisterUserInput) => {
-    const ip = req.headers.get('x-forwarded-for');
+authController.post('/register', validateSchema(RegisterUserSchema), async (c : ContextSchema) => {
+  const data: RegisterUserInput = c.getData;
+  const ip = HeaderHelper.getIP(c);
 
-    try {
-        const register = new AuthenticateLogin(data.user, data.password, ip, data.email, data.name);
-        const user = await register.createUser();
-        if (user) {
-            Logs.create(
-                "Cadastrado no sistema", 
-                "register_success",
-                "Usuário cadastrado no sistema.",
-                user.id,
-                null
-            );
-            
-            return NextResponse.json({ message: "Cadastrado com sucesso.", data: { identify: user.id} });
-        } else {
-            return NextResponse.json({ message: "Não foi possível criar o usuário" }, { status: 400 });
-        }
-    } catch (error: any) {
-        return NextResponse.json({ message: error.message }, { status: 500 });
-    }
-};
+  try {
+      const register = new AuthenticateLogin(data.user, data.password, ip, data.email, data.name);
+      const user = await register.createUser();
+
+      if (user) {
+          Logs.create({
+              title: "Cadastrado no sistema",
+              reference: "register_success",
+              content: "Usuário cadastrado no sistema.",
+              user_id: user.id,
+              context: c
+          });
+
+          return c.json({ code: 'success', message: "Cadastrado com sucesso.", data: { identify: user.id} }, 200);
+      } else {
+          return c.json({ code: 'invalid_register',  message: "Não foi possível criar o usuário." }, 400);
+      }
+  } catch (error: any) {
+    return c.json({ code: 'fail', message: error.message }, 400);
+  }
+});
